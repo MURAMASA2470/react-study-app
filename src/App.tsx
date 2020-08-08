@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Routes from './routes';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  loading = (): JSX.Element => <p>Loading...</p>
+
+  render(): JSX.Element {
+    return (
+      <Suspense fallback={this.loading}>
+        <BrowserRouter>
+            <Switch>
+              {Routes.map((r, index) => (
+                <Route  key={index}
+                        path={r.path}
+                        exact={r.exact}
+                        name={r.name}
+                        component={r.component}
+                />
+              ))}
+              <Route render={() => <h1>Not Found</h1>} />
+            </Switch>
+        </BrowserRouter>
+      </Suspense>
+    );
+  }
 }
 
 export default App;
