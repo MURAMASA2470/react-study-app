@@ -28,7 +28,8 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { makeStyles, createStyles, withStyles, Theme, WithStyles } from '@material-ui/core/styles';
-import {Route, withRouter, RouteComponentProps} from 'react-router-dom'
+import { Route, withRouter, RouteComponentProps } from 'react-router-dom'
+import AccountMenu from '../components/layout/accountMenu'
 
 const drawerWidth: number = 240;
 
@@ -166,6 +167,7 @@ class Layout extends React.Component<IProps, IState> {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+            <AccountMenu />
           </Toolbar>
         </AppBar>
         <Drawer

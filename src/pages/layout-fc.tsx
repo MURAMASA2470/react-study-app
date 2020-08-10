@@ -29,6 +29,7 @@ import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import {Route, withRouter, RouteComponentProps} from 'react-router-dom'
+import AccountMenu from '../components/layout/accountMenu'
 
 const drawerWidth: number = 240;
 
@@ -155,6 +156,7 @@ const Layout: React.FC<Props> = props => {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+            <AccountMenu />
           </Toolbar>
         </AppBar>
         <Drawer
