@@ -1,15 +1,18 @@
 import React from 'react';
-
 import Layout from './layout';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
-class Dashbord extends React.Component {
-    render(): JSX.Element {
-        return (
-            <Layout pageTitle="Dashbord">
-                <h1>Content</h1>
-            </Layout>
-        );
-    }
+const styles = makeStyles((theme: Theme) => ({}));
+
+interface Props {}
+
+const Dashbord: React.FC<Props> = props => {
+  const classes = styles();
+  return (
+    <Layout pageTitle="Dashbord">
+      <h1>Content</h1>
+    </Layout>
+  );
 }
 
 export default Dashbord;
