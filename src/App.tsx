@@ -10,13 +10,8 @@ class App extends React.Component {
       <Suspense fallback={this.loading}>
         <BrowserRouter>
             <Switch>
-              {Routes.map((r, index) => (
-                <Route  key={index}
-                        path={r.path}
-                        exact={r.exact}
-                        name={r.name}
-                        component={r.component}
-                />
+              {Routes.map((route, index) => (
+                <Route key={index} {...route} />
               ))}
               <Route render={() => <h1>Not Found</h1>} />
             </Switch>

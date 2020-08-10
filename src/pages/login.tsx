@@ -44,7 +44,8 @@ interface Props {}
 const Login: React.FC<Props> = props => {
   const history = useHistory();
   const classes = styles();
-  const onSubmit = () => {
+
+  const onSubmit = (): void => {
     history.push('/');
   }
 
@@ -91,7 +92,7 @@ const Login: React.FC<Props> = props => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onSubmit={onSubmit}
+            onClick={onSubmit}
           >
             Sign In
           </Button>
