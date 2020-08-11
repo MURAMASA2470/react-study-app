@@ -12,7 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, createStyles, withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useHistory, RouteComponentProps} from 'react-router-dom'
+import { useHistory, RouteComponentProps} from 'react-router-dom';
+import Footer from '../components/layout/footer';
 
 const styles = makeStyles((theme: Theme) => ({
   paper: {
@@ -110,13 +111,7 @@ const Login: React.FC<Props> = props => {
           </Grid>
         </div>
       </div>
-      <Box pt={4}>
-        <footer className={classes.footer}>
-            <Container maxWidth="sm">
-                Copyright © MURAMASA2470 {new Date().getFullYear()}
-            </Container>
-        </footer>
-      </Box>
+      <Footer />
     </Container>
   );
 }

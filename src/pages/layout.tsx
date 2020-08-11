@@ -30,6 +30,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import { makeStyles, createStyles, withStyles, Theme, WithStyles } from '@material-ui/core/styles';
 import { Route, withRouter, RouteComponentProps } from 'react-router-dom'
 import AccountMenu from '../components/layout/accountMenu'
+import Footer from '../components/layout/footer';
 
 const drawerWidth: number = 240;
 
@@ -206,13 +207,7 @@ class Layout extends React.Component<IProps, IState> {
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
             <div>{this.props.children}</div>
-            <Box pt={4}>
-              <footer className={classes.footer}>
-              <Container maxWidth="sm">
-                Copyright © MURAMASA2470 {new Date().getFullYear()}
-              </Container>
-              </footer>
-            </Box>
+            <Footer />
           </Container>
         </main>
       </div>
