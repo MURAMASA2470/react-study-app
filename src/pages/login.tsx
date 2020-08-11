@@ -30,7 +30,7 @@ const styles = makeStyles((theme: Theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(1, 0, 2),
   },
   footer: {
     padding: theme.spacing(3, 2),
@@ -57,7 +57,7 @@ const Login: React.FC<Props> = props => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          {process.env.REACT_APP_APPLICATION_NAME}
         </Typography>
         <div className={classes.form}>
           <TextField
@@ -66,7 +66,7 @@ const Login: React.FC<Props> = props => {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="メールアドレス"
             name="email"
             autoComplete="email"
             autoFocus
@@ -77,14 +77,14 @@ const Login: React.FC<Props> = props => {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="パスワード"
             type="password"
             id="password"
             autoComplete="current-password"
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            label="パスワードを記憶する"
           />
           <Button
             type="submit"
@@ -94,17 +94,17 @@ const Login: React.FC<Props> = props => {
             className={classes.submit}
             onClick={onSubmit}
           >
-            Sign In
+            {"ログイン"}
           </Button>
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
-                Forgot password?
+                {"パスワードを忘れた場合"}
               </Link>
             </Grid>
             <Grid item>
               <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+                {"新規作成"}
               </Link>
             </Grid>
           </Grid>
