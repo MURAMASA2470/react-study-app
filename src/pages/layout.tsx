@@ -22,7 +22,7 @@ import { createStyles, withStyles, Theme, WithStyles } from '@material-ui/core/s
 import AccountMenu from '../components/layout/accountMenu'
 import Footer from '../components/layout/footer';
 
-const drawerWidth: number = 240;
+const drawerWidth = 240;
 
 const styles = (theme: Theme) => createStyles({
   root: {
