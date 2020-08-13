@@ -13,6 +13,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/layout/footer';
+import { useForm } from "react-hook-form";
 
 const styles = makeStyles((theme: Theme) => ({
   paper: {
@@ -39,15 +40,21 @@ const styles = makeStyles((theme: Theme) => ({
   }
 }));
 
+type Inputs = {
+  email: string,
+  password: string
+}
+
 interface Props {}
 
 const Login: React.FC<Props> = props => {
   const history = useHistory();
   const classes = styles();
+  const { register, handleSubmit, errors } = useForm<Inputs>();
 
   const onSubmit = (): void => {
-    history.push('/');
-  }
+    setTimeout(() => history.push('/'), 1000);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -70,6 +77,11 @@ const Login: React.FC<Props> = props => {
             name="email"
             autoComplete="email"
             autoFocus
+            inputRef={register({
+              required: "メールアドレスが入力されていません"
+            })}
+            error={errors.email != undefined}
+            helperText={errors.email && errors.email?.message}
           />
           <TextField
             variant="outlined"
@@ -81,6 +93,11 @@ const Login: React.FC<Props> = props => {
             type="password"
             id="password"
             autoComplete="current-password"
+            inputRef={register({
+              required: "パスワードが入力されていません"
+            })}
+            error={errors.password != undefined}
+            helperText={errors.password && errors.password?.message}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -92,7 +109,7 @@ const Login: React.FC<Props> = props => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={onSubmit}
+            onClick={handleSubmit(onSubmit)}
           >
             {"ログイン"}
           </Button>
