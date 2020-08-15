@@ -80,7 +80,7 @@ const Login: React.FC<Props> = props => {
             inputRef={register({
               required: "メールアドレスが入力されていません"
             })}
-            error={errors.email != undefined}
+            error={errors.email !== undefined}
             helperText={errors.email && errors.email?.message}
           />
           <TextField
@@ -96,7 +96,7 @@ const Login: React.FC<Props> = props => {
             inputRef={register({
               required: "パスワードが入力されていません"
             })}
-            error={errors.password != undefined}
+            error={errors.password !== undefined}
             helperText={errors.password && errors.password?.message}
           />
           <FormControlLabel
