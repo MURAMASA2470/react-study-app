@@ -18,13 +18,13 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
-import { createStyles, withStyles, Theme, WithStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import AccountMenu from './accountMenu'
 import Footer from './footer';
 
 const drawerWidth = 240;
 
-const styles = (theme: Theme) => createStyles({
+const styles = makeStyles((theme: Theme) => ({
   root: {
     display: 'flex'
   },
@@ -104,54 +104,38 @@ const styles = (theme: Theme) => createStyles({
   main: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(2),
-  },
-  footer: {
-    padding: theme.spacing(3, 2),
-    marginTop: 'auto',
-    textAlign: 'center'
   }
-});
+}));
 
-interface IProps extends WithStyles<typeof styles> {
+type Props = {
   pageTitle: string
 }
 
-interface IState {
-  open?: boolean
-}
-class Layout extends React.Component<IProps, IState> {
-
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      open: true
-    }
-  }
-
-  render(): JSX.Element {
-    const { classes } = this.props;
-    const handleDrawerOpen = () => {
-      this.setState({ open: true })
-    };
-    const handleDrawerClose = () => {
-      this.setState({ open: false })
-    };
-    return (
-      <div className={classes.root}>
+const Layout: React.FC<Props> = props => {
+  const classes = styles();
+  const [open, setOpen] = React.useState<boolean>(true)
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+  return (
+    <div className={classes.root}>
         <CssBaseline />
-        <AppBar position="absolute" className={clsx(classes.appBar, this.state.open && classes.appBarShift)}>
+        <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
           <Toolbar className={classes.toolbar}>
             <IconButton
               edge="start"
               color="inherit"
               aria-label="open drawer"
               onClick={handleDrawerOpen}
-              className={clsx(classes.menuButton, this.state.open && classes.menuButtonHidden)}
+              className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
             >
               <MenuIcon />
             </IconButton>
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-              {this.props.pageTitle}
+              {props.pageTitle}
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
@@ -164,9 +148,9 @@ class Layout extends React.Component<IProps, IState> {
         <Drawer
           variant="permanent"
           classes={{
-            paper: clsx(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
           }}
-          open={this.state.open}
+          open={open}
         >
           <div className={classes.toolbarIcon}>
             <IconButton onClick={handleDrawerClose}>
@@ -196,13 +180,12 @@ class Layout extends React.Component<IProps, IState> {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
-            <div>{this.props.children}</div>
+            <div>{props.children}</div>
             <Footer />
           </Container>
         </main>
       </div>
-    );
-  }
+  )
 }
 
-export default withStyles(styles)(Layout);
+export default Layout;
