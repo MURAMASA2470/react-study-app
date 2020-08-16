@@ -11,9 +11,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useHistory } from 'react-router-dom';
 import Footer from '../components/layout/footer';
 import { useForm } from "react-hook-form";
+import { navigate } from "gatsby"
 
 const styles = makeStyles((theme: Theme) => ({
   paper: {
@@ -48,12 +48,11 @@ type Inputs = {
 interface Props {}
 
 const Login: React.FC<Props> = props => {
-  const history = useHistory();
   const classes = styles();
   const { register, handleSubmit, errors } = useForm<Inputs>();
 
   const onSubmit = (): void => {
-    setTimeout(() => history.push('/'), 1000);
+    setTimeout(() => navigate('/dashbord'), 1000);
   };
 
   return (

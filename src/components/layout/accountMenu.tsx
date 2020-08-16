@@ -5,14 +5,13 @@ import IconButton from '@material-ui/core/IconButton';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { useHistory } from 'react-router-dom'
+import { navigate } from "gatsby"
 
 interface Props {
 
 }
 
 const AccountMenu: React.FC<Props> = props => {
-  const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -25,7 +24,7 @@ const AccountMenu: React.FC<Props> = props => {
 
   const handleLogoutClick = () => {
     handleClose();
-    history.push('/login');
+    navigate('/login');
   }
 
   return (
